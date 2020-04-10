@@ -27,11 +27,34 @@ class Play extends Phaser.Scene {
 
         //Create Green UI background
         this.add.rectangle(37,42,566,64, 0x00FF00).setOrigin(0,0);
+
+        //Add rocket player one
+        this.p1Rocket = new Rocket(this, game.config.width/2, 431, 'rocket').setScale(0.5,0.5).setOrigin(0,0);
+
+        //Add starships
+        this.ship01 = new Starship(this, game.config.width + 192, 132, 'spaceship', 0, 30).setOrigin(0,0);
+        this.ship02 = new Starship(this, game.config.width + 121, 232, 'spaceship', 0, 20).setOrigin(0,0);
+        this.ship03 = new Starship(this, game.config.width + 35, 332, 'spaceship', 0, 10).setOrigin(0,0);
+
+
+        //Define keyboard inputs
+        keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+
     }
 
     update() {
         //scroll starfield
-        this.starfield.tilePositionX -= 5.5;
+        this.starfield.tilePositionX -= 3.5;
         this.starfield.tilePositionY += 1.25;
+
+        //Update rocket
+        this.p1Rocket.update();
+
+        //Update starships
+        this.ship01.update();
+        this.ship02.update();
+        this.ship03.update();
     }
 }
