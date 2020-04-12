@@ -7,17 +7,19 @@ class Starship extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
 
         //Instantiate vars
-        this.HorizontalSpeed = 2; //Horizontal speed
         this.points = pointValue;
     }
 
     update()
     {
         //Horizontal movement
-        this.x -= this.HorizontalSpeed;
+        this.x -= game.settings.spaceshipSpeed;
         if(this.x <= (0-this.width)){
-            this.x = game.config.width;
-            console.log("should reset");
+            this.reset();
         }
+    }
+
+    reset(){
+        this.x = game.config.width;
     }
 }
